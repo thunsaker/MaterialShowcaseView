@@ -1,5 +1,6 @@
 package uk.co.deanwild.materialshowcaseview;
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
@@ -557,6 +558,7 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         mHandler = null;
 
         getViewTreeObserver().removeGlobalOnLayoutListener(mLayoutListener);
+
         mLayoutListener = null;
 
         if (mPrefsManager != null)
@@ -588,6 +590,8 @@ public class MaterialShowcaseView extends FrameLayout implements View.OnTouchLis
         }
 
         ((ViewGroup) activity.getWindow().getDecorView()).addView(this);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+            activity.getWindow().setStatusBarColor(activity.getResources().getColor(android.R.color.transparent));
 
         setShouldRender(true);
 
